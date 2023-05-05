@@ -5,7 +5,7 @@ from ase.build import cut
 
 # #######221##################0
 
-def perovskite_conv_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1)):
+def perovskite_conv_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 2 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 2 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 6 if not isinstance(c_atom, list) else c_atom
@@ -31,7 +31,7 @@ def perovskite_conv_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1
     return atoms
 
 
-def perovskite_prim_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1)):
+def perovskite_prim_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 1 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 1 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 1 if not isinstance(c_atom, list) else c_atom
@@ -50,7 +50,7 @@ def perovskite_prim_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1
 
 # # 轴拉长
 # ########127##################
-def perovskite_conv_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.1, cycle=0.05, size=(1, 1, 1)):
+def perovskite_conv_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.1, cycle=0.05, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 2 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 2 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 6 if not isinstance(c_atom, list) else c_atom
@@ -76,7 +76,7 @@ def perovskite_conv_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.1, cy
     return atoms
 
 
-def perovskite_prim_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.0, cycle=0.04, size=(1, 1, 1)):
+def perovskite_prim_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.0, cycle=0.04, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 1 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 1 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 2 if not isinstance(c_atom, list) else c_atom
@@ -96,7 +96,7 @@ def perovskite_prim_127(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, alpha=1.0, cy
 
 # #####62,################################
 
-def perovskite_conv_62(a_atom="Ca", b_atom="Ti", c_atom="O", a=7, alpha=1.0, move=0.04, cycle=0.04, size=(1, 1, 1)):
+def perovskite_conv_62(a_atom="Ca", b_atom="Ti", c_atom="O", a=7, alpha=1.0, move=0.04, cycle=0.04, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 1 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 1 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 2 if not isinstance(c_atom, list) else c_atom
@@ -125,7 +125,7 @@ def perovskite_conv_62(a_atom="Ca", b_atom="Ti", c_atom="O", a=7, alpha=1.0, mov
     return atoms2
 
 
-def perovskite_prim_62(a_atom="Ca", b_atom="Ti", c_atom="O", a=7, alpha=1.0, move=0.04, cycle=0.04, size=(1, 1, 1)):
+def perovskite_prim_62(a_atom="Ca", b_atom="Ti", c_atom="O", a=7, alpha=1.0, move=0.04, cycle=0.04, size=(1, 1, 1),**kwargs):
     a_atom = [a_atom] * 1 if not isinstance(a_atom, list) else a_atom
     b_atom = [b_atom] * 1 if not isinstance(b_atom, list) else b_atom
     c_atom = [c_atom] * 2 if not isinstance(c_atom, list) else c_atom

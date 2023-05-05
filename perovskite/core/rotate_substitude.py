@@ -13,7 +13,7 @@ from numpy import random
 from numpy.linalg import norm
 
 
-class RotateSubstitute:
+class SubstituteWithRotatedB:
     """Substitute atoms in atoms.
 
     such as: ABX3 -> ACX3
@@ -31,7 +31,8 @@ class RotateSubstitute:
             assert "space_group_number" in kwargs
 
         self.strategy = strategy
-        self.kwargs = kwargs
+        self.kwargs = {"space_group_number":1}
+        self.kwargs.update(kwargs)
 
     def sub_atoms(self, atoms: ase.Atoms, a: str, b: [str, ase.Atom, ase.Atoms], index=None):
         """Substitute atom/atoms."""
@@ -48,13 +49,14 @@ class RotateSubstitute:
                 raise TypeError("Number of index:{} is out of number of a atoms {}".format(len(index), len(indexs)))
 
         if isinstance(b, ase.Atoms):
+            if len(b) >= 2:
+                bbs = self.get_rotate_atoms_list(b, atoms=atoms, index=indexs)
+                for indi, bb in zip(indexs, bbs):
+                    atoms.extend(bb)
+                del atoms[indexs]
+            else:
+                atoms.symbols[indexs] = b
 
-            bbs = self.get_rotate_atoms_list(b, atoms=atoms, index=indexs)
-
-            for indi, bb in zip(indexs, bbs):
-                atoms.extend(bb)
-
-            del atoms[indexs]
         elif isinstance(b, str) or isinstance(b, Atom):
             atoms.symbols[indexs] = b
         else:
@@ -62,7 +64,7 @@ class RotateSubstitute:
 
         return atoms
 
-    def get_rotate_atoms_list(self, b, atoms=None, index=None):
+    def get_rotate_atoms_list(self, b, atoms, index=None):
         """rotate with strategy."""
         b = b.copy()
 
@@ -80,7 +82,8 @@ class RotateSubstitute:
         bs = self._process(bs, atoms=atoms, index=index)
         return bs
 
-    def _process(self, bs, atoms=None, index=None):
+    @staticmethod
+    def _process(bs, atoms, index=None):
         """set the position for each b atoms"""
         for indi, b in zip(index, bs):
             b.center()
@@ -88,7 +91,8 @@ class RotateSubstitute:
             b.set_positions(atoms.get_positions()[indi] + b.get_positions())
         return bs
 
-    def _random(self, b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, random_state=None, **kwargs):
+    @staticmethod
+    def _random(b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, random_state=None, **kwargs):
 
         """Substitute atom/atoms in random direction."""
 
@@ -102,7 +106,8 @@ class RotateSubstitute:
             bs.append(bb)
         return bs
 
-    def _same(self, b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, angle=0, v="x", **kwargs):
+    @staticmethod
+    def _same(b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, angle=0, v="x", **kwargs):
 
         """Substitute atom/atoms in same direction."""
         bs = []
@@ -112,7 +117,8 @@ class RotateSubstitute:
             bs.append(bb)
         return bs
 
-    def _nothing(self, b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, **kwargs):
+    @staticmethod
+    def _nothing(b: [str, ase.Atom, ase.Atoms], atoms=None, index=None, **kwargs):
 
         """do nothing."""
         bs = []
@@ -120,6 +126,7 @@ class RotateSubstitute:
             bb = b.copy()
             bs.append(bb)
         return bs
+
 
     def _auto(self, b: [str, ase.Atom, ase.Atoms], atoms: Atoms = None, index=None, **kwargs):
 
@@ -162,6 +169,8 @@ class RotateSubstitute:
                     bb.rotate(a=90, v=(1, 1, 0))
                 bs.append(bb)
             return bs
+        else:
+            return self._nothing(b, atoms=atoms, index=index, **kwargs)
 
     def _mirror(self, b: [str, ase.Atom, ase.Atoms], atoms: Atoms, index: np.ndarray, angle=180, v="z", **kwargs):
 
@@ -214,7 +223,7 @@ if __name__ == "__main__":
     no = molecule('HCF3')
     no.get_scaled_positions()
     view(atomss)
-    att =  RotateSubstitute(strategy="auto",space_group_number=62)
+    att =  SubstituteWithRotatedB(strategy="auto",space_group_number=62)
     # att =  BaseSubstitute(strategy="mirror",angle=90, v="x")
     atoms =att.sub_atoms(atomss, "Ba", no, index=None)
     view(atoms)

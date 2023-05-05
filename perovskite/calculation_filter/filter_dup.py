@@ -29,7 +29,7 @@ class CircaAtoms(Atoms):
         atomss.constraints = copy.deepcopy(atoms.constraints)
         return atomss
 
-    def to_atoms(self)->Atoms:
+    def to_atoms(self) -> Atoms:
         """Return a copy."""
         atoms = Atoms(cell=self.cell, pbc=self.pbc, info=self.info,
                       celldisp=self._celldisp.copy())
@@ -60,7 +60,7 @@ class CircaAtoms(Atoms):
                 and (a['numbers'][poa_index] == b['numbers'][pob_index]).all())
 
 
-def filter_dup(atomss: List[Atoms, CircaAtoms])->List[Atoms]:
+def filter_dup(atomss: List[Atoms, CircaAtoms]) -> List[Atoms]:
     """Remove the same atoms."""
     temp = []
     for n, i in enumerate(atomss):

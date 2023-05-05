@@ -8,22 +8,21 @@ from ase import Atom, Atoms
 from ase.visualize import view
 
 
-def generator_molecule(name=None):
+def _generator_molecule(name=None):
     if name is None:
-
-        for i, j in small_molecule_ion_data.items():
-            yield i, Atoms(j["atom"])
+        for i, j in small_molecule.items():
+            yield i, Atoms(symbols=j["atom"])
     else:
-        for i, j in small_molecule_ion_data.items():
+        for i, j in small_molecule.items():
             if i in name:
-                yield i, Atoms(j["atom"])
+                yield i, Atoms(symbols=j["atom"])
 
 
 def list_molecule(name=None):
-    return list(generator_molecule(name=name))
+    return list(_generator_molecule(name=name))
 
 
-small_molecule_ion_data = {
+small_molecule = {
 
     'NH4': {
         "r_eff": 1.46,
@@ -151,11 +150,11 @@ small_molecule_ion_data = {
             ]
     },
 
-    'HC(NH2)2': {
-        "r_eff": 2.53,
-        'atom':
-            []
-    },
+    # 'HC(NH2)2': {
+    #     "r_eff": 2.53,
+    #     'atom':
+    #         []
+    # },
 
     'OHNH3': {
         "r_eff": 2.16,
@@ -655,5 +654,5 @@ small_molecule_ion_data = {
 }
 
 if __name__ == "__main__":
-    at = list(generator_molecule(name=["C3H10N(CH3CH2CH2NH3)", ]))
+    at = list(_generator_molecule(name=["C3H10N(CH3CH2CH2NH3)", ]))
     view(at[0][1])

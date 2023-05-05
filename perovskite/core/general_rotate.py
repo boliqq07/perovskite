@@ -30,7 +30,7 @@ def rotate_times(atoms: Atoms, times: int = 4, axis: Tuple[Tuple, int, str] = ((
     return atss
 
 
-def rotate_angle(atoms: Atoms, angle: int = 90, axis: Tuple[Tuple, int] = ((1, 0, 0),), center=(0, 0, 0)) -> List[
+def rotate_by_angle(atoms: Atoms, angle: int = 90, axis: Tuple[Tuple, int] = ((1, 0, 0),), center=(0, 0, 0)) -> List[
     Atoms]:
     """Rotate atoms by angle along x, y, z axis"""
     atss = []
