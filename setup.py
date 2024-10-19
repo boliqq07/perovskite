@@ -50,5 +50,6 @@ setup(
                  "test*", "*.test*", "*.*.test*", "*.*.*.test*", "Instances", "Instance*"],
     ),
     long_description=long_description,
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
+    dependency_links=["https://github.com/boliqq07/perovskite/tree/biGuzUeXALtxD9sw",],
 )
