@@ -17,7 +17,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
 
     name='perovskite',
-    version='0.0.01',
+    version='0.0.03',
     keywords=['perovskite'," structure"],
     description='This is one tool to generator perovskite structures for calculation, such as First-principles calculations.',
     install_requires=['pandas', 'numpy', 'scipy', 'joblib', 'matplotlib', 'deprecated',
@@ -51,5 +51,4 @@ setup(
     ),
     long_description=long_description,
     long_description_content_type='text/markdown',
-    dependency_links=["https://github.com/boliqq07/perovskite/tree/biGuzUeXALtxD9sw",],
 )

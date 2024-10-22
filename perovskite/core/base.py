@@ -11,11 +11,11 @@ import ase
 from ase import Atoms
 from ase.spacegroup import get_spacegroup
 
-from .general_rotate import rotate_times, rotate_by_angle
-from .general_standard import perovskite_prim_221, perovskite_conv_221, \
+from perovskite.core.general_rotate import rotate_times, rotate_by_angle
+from perovskite.core.general_standard import perovskite_prim_221, perovskite_conv_221, \
     perovskite_prim_62, perovskite_conv_127, perovskite_prim_127, perovskite_conv_62
-from .general_substitute import sub_atoms
-from .rotate_substitude import SubstituteWithRotatedB
+from perovskite.core.general_substitute import sub_atoms
+from perovskite.core.rotate_substitude import SubstituteWithRotatedB
 
 
 class Perovskite(Atoms):

@@ -216,7 +216,7 @@ def _merge(distance, tol=0.1):
 
 
 if __name__ == "__main__":
-    from .general_standard import perovskite_prim_221, perovskite_conv_221, perovskite_prim_62, \
+    from perovskite.core.general_standard import perovskite_prim_221, perovskite_conv_221, perovskite_prim_62, \
         perovskite_conv_62
     atomss = perovskite_conv_62(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1))
     # atomss = perovskite_conv_221(a_atom="Ba", b_atom="Ti", c_atom="O", a=7, size=(1, 1, 1))
